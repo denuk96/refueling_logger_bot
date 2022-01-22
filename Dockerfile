@@ -24,7 +24,10 @@ RUN apk add --update --no-cache \
       netcat-openbsd \
       openssl \
       pkgconfig \
-      tzdata
+      tzdata \
+      libpq-dev \
+      postgresql-client \
+      postgresql-dev
 
 RUN gem install bundler -v $BUNDLER_VERSION
 

@@ -3,6 +3,9 @@ GEM
   specs:
     activemodel (6.1.4.4)
       activesupport (= 6.1.4.4)
+    activerecord (6.1.4.4)
+      activemodel (= 6.1.4.4)
+      activesupport (= 6.1.4.4)
     activesupport (6.1.4.4)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
@@ -14,7 +17,6 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    bson (4.14.0)
     byebug (11.1.3)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -32,15 +34,10 @@ GEM
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     minitest (5.15.0)
-    mongo (2.17.0)
-      bson (>= 4.8.2, < 5.0.0)
-    mongoid (7.3.3)
-      activemodel (>= 5.1, < 6.2)
-      mongo (>= 2.10.5, < 3.0.0)
-      ruby2_keywords (~> 0.0.5)
     parallel (1.21.0)
     parser (3.1.0.0)
       ast (~> 2.4.1)
+    pg (1.2.3)
     rainbow (3.1.1)
     redis (4.4.0)
     redis-namespace (1.8.1)
@@ -81,10 +78,12 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  activerecord (~> 6.1, >= 6.1.4.4)
   byebug
   connection_pool (= 2.2.5)
   dotenv (~> 2.1, >= 2.1.1)
-  mongoid (~> 7.0)
+  i18n (~> 1.8, >= 1.8.11)
+  pg (~> 1.2, >= 1.2.3)
   redis (= 4.4.0)
   redis-namespace
   rubocop (~> 1.21)

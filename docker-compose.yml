@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - redis
-      - mongo
+      - database
     volumes:
       - .:/app
       - gem_cache:/usr/local/bundle/gems
@@ -29,13 +29,15 @@ services:
 #    command: bundle exec sidekiq -r ./bin/sidekiq_boot.rb -C config/sidekiq.yml
 #    stdin_open: true # docker run -i
 #    tty: true        # docker run -t
-  mongo:
-    image: "mongo:4.4"
-    env_file: config/.env
+  database:
+    image: postgres:13.5
+    environment:
+      POSTGRES_PASSWORD: '123456'
     ports:
-      - "27018:27017"
+      - "7777:5432"
     volumes:
-      - "mongodb:/var/lib/mongodb/data"
+      - db_data:/var/lib/postgresql/data
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
   redis:
     image: redis:6.2
     ports:
@@ -47,5 +49,5 @@ services:
 volumes:
   gem_cache:
   redis:
-  mongodb:
+  db_data:
 

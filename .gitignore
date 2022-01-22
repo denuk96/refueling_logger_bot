@@ -2,3 +2,6 @@
 .byebug_history
 config/.env
 test.json
+debug.log
+config/init.sql
+/config/init.sql
