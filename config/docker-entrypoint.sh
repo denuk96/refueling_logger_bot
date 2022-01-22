@@ -7,5 +7,6 @@ unset BUNDLE_BIN
 
 bundle exec bundle install
 bundle exec bundle update
+rake db:migrate
 
 exec "$@"

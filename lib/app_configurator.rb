@@ -2,6 +2,7 @@ require "bundler/setup"
 Bundler.require
 Dotenv.load('./.env')
 require './lib/database_connector'
+require './models/user'
 
 module AppConfigurator
   class << self

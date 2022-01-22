@@ -5,7 +5,7 @@ require 'pg'
 require 'active_record'
 require 'yaml'
 
-require_relative 'config/database_connector'
+require_relative 'lib/database_connector'
 
 namespace :db do
 
@@ -13,7 +13,7 @@ namespace :db do
   task :migrate do
     connection_details = DatabaseConnector.database_config
     ActiveRecord::Base.establish_connection(connection_details)
-    ActiveRecord::Migration.migrate('db/migrate/')
+    ActiveRecord::MigrationContext.new('db/migrate/', ActiveRecord::SchemaMigration).migrate
   end
 
   desc 'Create the database'
