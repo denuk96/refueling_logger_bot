@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+      - mongo
+    volumes:
+      - .:/app
+      - gem_cache:/usr/local/bundle/gems
+    env_file: config/.env
+    command: bundle exec ruby bin/main.rb
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+# TODO: add sidekiq later
+#  sidekiq:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    depends_on:
+#      - app
+#    volumes:
+#      - .:/app
+#      - gem_cache:/usr/local/bundle/gems
+#    env_file: config/.env
+#    command: bundle exec sidekiq -r ./bin/sidekiq_boot.rb -C config/sidekiq.yml
+#    stdin_open: true # docker run -i
+#    tty: true        # docker run -t
+  mongo:
+    image: "mongo:4.4"
+    env_file: config/.env
+    ports:
+      - "27018:27017"
+    volumes:
+      - "mongodb:/var/lib/mongodb/data"
+  redis:
+    image: redis:6.2
+    ports:
+      - "6379"
+    volumes:
+      - redis:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "-h", "localhost", "ping" ]
+volumes:
+  gem_cache:
+  redis:
+  mongodb:
+
