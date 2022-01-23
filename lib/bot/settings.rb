@@ -1,6 +1,5 @@
 require_relative "buttons/abstract"
 require_relative 'buttons/base'
-require_relative "buttons/settings"
 require_relative 'buttons/log_refueling'
 require_relative 'buttons/get_stats'
 require_relative "reply_handlers/abstract"

@@ -15,20 +15,6 @@ services:
     command: bundle exec ruby bin/main.rb
     stdin_open: true # docker run -i
     tty: true        # docker run -t
-# TODO: add sidekiq later
-#  sidekiq:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    depends_on:
-#      - app
-#    volumes:
-#      - .:/app
-#      - gem_cache:/usr/local/bundle/gems
-#    env_file: config/.env
-#    command: bundle exec sidekiq -r ./bin/sidekiq_boot.rb -C config/sidekiq.yml
-#    stdin_open: true # docker run -i
-#    tty: true        # docker run -t
   database:
     image: postgres:13.5
     environment:

@@ -4,7 +4,7 @@ require 'logger'
 class DatabaseConnector
   class << self
     def establish_connection
-      ActiveRecord::Base.logger = Logger.new('debug.log')
+      ActiveRecord::Base.logger = Logger.new(STDOUT, Logger::DEBUG)
       ActiveRecord::Base.establish_connection(database_config)
     end
 
