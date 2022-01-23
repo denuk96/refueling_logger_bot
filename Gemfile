@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'telegram-bot-ruby', '~> 0.16.0', require: 'telegram/bot'
+gem 'telegram-bot-ruby', '~> 0.17.0', require: 'telegram/bot'
 gem 'activerecord', '~> 6.1', '>= 6.1.4.4'
 gem 'i18n', '~> 1.8', '>= 1.8.11'
 gem 'pg', '~> 1.2', '>= 1.2.3'

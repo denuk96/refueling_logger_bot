@@ -1,6 +1,5 @@
 require_relative '../lib/app_configurator'
-require_relative '../lib/bot/client'
+require_relative '../lib/bot/api_client'
 
 AppConfigurator.setup_database
-p User.last
-# Bot::Client.start
+Bot::ApiClient.start(ENV['TELEGRAM_BOT_TOKEN'])
