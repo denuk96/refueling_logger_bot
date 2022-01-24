@@ -2,7 +2,7 @@ require "bundler/setup"
 Bundler.require
 Dotenv.load('./.env')
 require './lib/database_connector'
-require './models/user'
+Dir["./models/*.rb"].each { |file| require file }
 require_relative 'basic/hash'
 
 module AppConfigurator
