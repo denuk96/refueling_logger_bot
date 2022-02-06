@@ -11,12 +11,12 @@ module Bot
 
       def call
         handler_key   = Bot::Settings::BUTTONS_RESPONSE_MESSAGES.key(replied_msg.text)
-
         return unless handler_key
 
         handler_class = Bot::Settings::REPLY_HANDLERS[handler_key]
-
         handler_class.new.call(user: user, reply_msg: reply_msg)
+      rescue => e
+        AppConfigurator.logger.error e.message
       end
     end
   end

@@ -9,7 +9,7 @@ module Bot
         Telegram::Bot::Client.run(token) do |bot|
           bot.listen do |msg|
             user = authenticate!(msg.from.id)
-            log(msg)
+            log(msg, user)
             Bot::TelegramResponder.new(bot: bot, message: msg, user: user).respond
           end
         end
@@ -23,11 +23,11 @@ module Bot
         User.find_or_create_by!(uid: user_id)
       end
 
-      def log(msg)
+      def log(msg, user)
         if msg.respond_to?(:text)
-          AppConfigurator.logger.debug "@#{msg.from.username}: #{msg.text}"
+          AppConfigurator.logger.debug "@#{msg.from.username}-#{user.id}: #{msg.text}"
         else
-          AppConfigurator.logger.debug "@#{msg.from.username}: #{msg.message.text}"
+          AppConfigurator.logger.debug "@#{msg.from.username}-#{user.id}: #{msg.message.text}"
         end
       end
     end

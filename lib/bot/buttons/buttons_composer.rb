@@ -1,4 +1,4 @@
-require_relative "../settings"
+require_relative '../settings'
 
 module Bot::Buttons
   class ButtonsComposer
@@ -27,7 +27,7 @@ module Bot::Buttons
 
     def generate_markup
       unless callback
-        @response_message = "Choose option"
+        @response_message = 'Choose option'
         return @markup    = collect_buttons(structure.keys)
       end
 
@@ -40,7 +40,7 @@ module Bot::Buttons
     end
 
     def execute_chosen_btn
-      chosen_button.execute
+      chosen_button.execute(user)
       set_response_msg
     end
 

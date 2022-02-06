@@ -7,7 +7,9 @@ module Bot
         refueling_data = message.text.split(',').map(&:to_f)
         odometer, amount, price = refueling_data
         refuelings = user.refuelings.build(odometer: odometer, amount: amount, price: price)
-        refuelings.save
+        refuelings.save!
+
+        'Saved.'
       end
     end
   end
